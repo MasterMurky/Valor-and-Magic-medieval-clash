@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnil0lyn0trcc"]
+
+[ext_resource type="Texture2D" uid="uid://bpjvdok202l6w" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Idle.png" id="1_sfgkn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub7js"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn6lm"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nt4o"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t68fk"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cag8v"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e33fn"]
+atlas = ExtResource("1_sfgkn")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lu8kj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub7js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn6lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nt4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t68fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cag8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e33fn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1mu4"]
+radius = 25.0799
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.00001, -54)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_lu8kj")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -45)
+shape = SubResource("CircleShape2D_w1mu4")
