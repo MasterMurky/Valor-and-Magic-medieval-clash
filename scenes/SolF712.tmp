@@ -360,7 +360,7 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_lu8kj")
 animation = &"attack1"
 autoplay = "idle"
-frame_progress = 0.0258675
+frame_progress = 0.411591
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -45)
