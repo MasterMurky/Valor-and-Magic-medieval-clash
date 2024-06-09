@@ -10,6 +10,8 @@ var target: CharacterBody2D = null
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var hurtbox = $AnimatedSprite2D/Hurtbox
+@onready var hitbox = $AnimatedSprite2D/Hitbox
 
 # Variable to check if the character is attacking
 var is_attacking = false
@@ -34,11 +36,12 @@ func _process(delta):
 				attack_target()
 			velocity = Vector2.ZERO
 
-		# Update sprite flip based on movement direction
+		# Update sprite flip and hurtbox based on movement direction
 		if direction.x > 0:
 			animated_sprite.flip_h = false
 		elif direction.x < 0:
 			animated_sprite.flip_h = true
+			hitbox.position.x = -12
 	else:
 		# If no target is defined, the character remains stationary
 		velocity = Vector2.ZERO
@@ -81,7 +84,7 @@ func _ready():
 
 func take_damage(amount : int) -> void:
 	animated_sprite.play("hurt")
-	print("Ouch ! I took ", amount, "damage")
+	print("Ouch ! I took ", amount, " damage")
 
 
 
