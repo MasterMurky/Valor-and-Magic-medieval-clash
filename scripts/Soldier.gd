@@ -9,6 +9,7 @@ var attack_range = 90
 var target: CharacterBody2D = null
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var animation_player = $AnimationPlayer
 
 # Variable to check if the character is attacking
 var is_attacking = false
@@ -63,12 +64,8 @@ func update_target():
 # Attack the target
 func attack_target():
 	if target != null:
-		animated_sprite.play("attack1")
+		animation_player.play("attack1")
 		is_attacking = true
-
-# Function to make the hitbox appear
-# ...
-
 
 
 # Function called when the script is added to the scene
@@ -78,3 +75,24 @@ func _ready():
 	# Ensure the idle animation is playing initially
 	animated_sprite.play("idle")
 	# Connect the animation_finished signal to the _on_AnimatedSprite2D_animation_finished function
+
+
+# Collisions, Damages, ... ------------------------------------
+
+func take_damage(amount : int) -> void:
+	animated_sprite.play("hurt")
+	print("Ouch ! I took ", amount, "damage")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
