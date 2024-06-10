@@ -7,11 +7,20 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Soldier" parent="." instance=ExtResource("1_i3inf")]
-position = Vector2(507, 43)
+position = Vector2(245, 39)
 equipe = 1
 
 [node name="Soldier2" parent="." instance=ExtResource("1_i3inf")]
-position = Vector2(-508, 52)
+position = Vector2(-212, 42)
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
+
+[node name="Soldier3" parent="." instance=ExtResource("1_i3inf")]
+position = Vector2(-404, 39)
+
+[node name="Soldier4" parent="." instance=ExtResource("1_i3inf")]
+position = Vector2(99, 46)
+equipe = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

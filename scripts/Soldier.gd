@@ -12,6 +12,7 @@ var target: CharacterBody2D = null
 @onready var animation_player = $AnimationPlayer
 @onready var hurtbox = $AnimatedSprite2D/Hurtbox
 @onready var hitbox = $AnimatedSprite2D/Hitbox
+@onready var coup_epee = $CoupEpee
 
 # Variable to check if the character is attacking
 var is_attacking = false
@@ -78,15 +79,17 @@ func update_target():
 	
 # Function to handle death
 func die():
+	animation_player.stop()
 	is_dead = true
 	animated_sprite.play("death")
-	animated_sprite.stop()
+	await get_tree().create_timer(0.7).timeout
+	animated_sprite.pause()
 	await get_tree().create_timer(1).timeout
 	queue_free()
 
 # Attack the target
 func attack_target():
-	if target != null and is_dead == false:
+	if (target != null) and (is_dead == false):
 		animation_player.play("attack1")
 		is_attacking = true
 
@@ -106,8 +109,10 @@ func take_damage(amount: int) -> void:
 
 	health -= amount
 	if health <= 0:
+		coup_epee.play()
 		die()
 	else:
 		animated_sprite.play("hurt")
 		print("Ouch! I took ", amount, " damage")
+		coup_epee.play()
 

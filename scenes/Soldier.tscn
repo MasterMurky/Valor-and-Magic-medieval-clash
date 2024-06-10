@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://cnil0lyn0trcc"]
+[gd_scene load_steps=65 format=3 uid="uid://cnil0lyn0trcc"]
 
 [ext_resource type="Script" path="res://scripts/Soldier.gd" id="1_33dfi"]
 [ext_resource type="Texture2D" uid="uid://bpjvdok202l6w" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Idle.png" id="1_sfgkn"]
+[ext_resource type="Shader" path="res://scenes/Soldier.gdshader" id="2_asrhj"]
 [ext_resource type="Texture2D" uid="uid://ceoovwtxqiwr7" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Attack01.png" id="2_c8qku"]
 [ext_resource type="Texture2D" uid="uid://d3dl0kun4mqn3" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Attack02.png" id="3_hvvls"]
 [ext_resource type="Texture2D" uid="uid://c6grctoa3naoh" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Attack03.png" id="4_upx52"]
@@ -10,6 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://cx0ex5igtbqbl" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Walk.png" id="8_yx6sr"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.gd" id="9_ftepm"]
 [ext_resource type="Script" path="res://scripts/Hitbox.gd" id="9_mwkkf"]
+[ext_resource type="AudioStream" uid="uid://wldx7kyyh106" path="res://assets/SE/sword-hit.mp3" id="12_rvany"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgfr8"]
+shader = ExtResource("2_asrhj")
+shader_parameter/flash_color = Color(0.992157, 0, 0.207843, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_flkrn"]
 atlas = ExtResource("2_c8qku")
@@ -278,7 +285,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"death",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -436,19 +443,49 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_h7heu"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfqys"]
 _data = {
 "RESET": SubResource("Animation_sv1xj"),
-"attack1": SubResource("Animation_gkhk2")
+"attack1": SubResource("Animation_gkhk2"),
+"hit": SubResource("Animation_h7heu")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2skd4"]
-size = Vector2(52, 61)
+size = Vector2(54, 89)
 
 [node name="Soldier" type="CharacterBody2D"]
 script = ExtResource("1_33dfi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_kgfr8")
 position = Vector2(-3.00001, -54)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_lu8kj")
@@ -481,5 +518,8 @@ libraries = {
 }
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -50)
+position = Vector2(-10, -48.5)
 shape = SubResource("RectangleShape2D_2skd4")
+
+[node name="CoupEpee" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_rvany")
