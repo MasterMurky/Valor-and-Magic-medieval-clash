@@ -7,10 +7,11 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Soldier" parent="." instance=ExtResource("1_i3inf")]
-position = Vector2(-412, 58)
+position = Vector2(507, 43)
+equipe = 1
 
 [node name="Soldier2" parent="." instance=ExtResource("1_i3inf")]
-position = Vector2(410, 50)
+position = Vector2(-508, 52)
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2

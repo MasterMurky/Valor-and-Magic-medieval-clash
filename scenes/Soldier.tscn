@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cnil0lyn0trcc"]
+[gd_scene load_steps=61 format=3 uid="uid://cnil0lyn0trcc"]
 
 [ext_resource type="Script" path="res://scripts/Soldier.gd" id="1_33dfi"]
 [ext_resource type="Texture2D" uid="uid://bpjvdok202l6w" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Idle.png" id="1_sfgkn"]
@@ -442,6 +442,9 @@ _data = {
 "attack1": SubResource("Animation_gkhk2")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2skd4"]
+size = Vector2(52, 61)
+
 [node name="Soldier" type="CharacterBody2D"]
 script = ExtResource("1_33dfi")
 
@@ -468,7 +471,6 @@ script = ExtResource("9_mwkkf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
 position = Vector2(-2.7, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ywpse")
 disabled = true
 debug_color = Color(0.968627, 0, 0.466667, 0.419608)
@@ -477,3 +479,7 @@ debug_color = Color(0.968627, 0, 0.466667, 0.419608)
 libraries = {
 "": SubResource("AnimationLibrary_gfqys")
 }
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -50)
+shape = SubResource("RectangleShape2D_2skd4")
