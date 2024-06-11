@@ -58,8 +58,9 @@ func _process(delta):
 	else:
 		# If no target is defined, the character remains stationary
 		velocity = Vector2.ZERO
-		animated_sprite.play("idle")
+		animation_player.stop()
 		is_attacking = false
+		animation_player.play("idle")
 
 # Function to find the nearest character
 func find_nearest_target():
@@ -98,7 +99,7 @@ func _ready():
 	# Add this character to the "characters" group
 	add_to_group("characters")
 	# Ensure the idle animation is playing initially
-	animated_sprite.play("idle")
+	animation_player.play("idle")
 	# Connect the animation_finished signal to the _on_AnimatedSprite2D_animation_finished function
 
 # Collisions, Damages, ... ------------------------------------

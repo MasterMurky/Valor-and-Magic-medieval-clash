@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cnil0lyn0trcc"]
+[gd_scene load_steps=66 format=3 uid="uid://cnil0lyn0trcc"]
 
 [ext_resource type="Script" path="res://scripts/Soldier.gd" id="1_33dfi"]
 [ext_resource type="Texture2D" uid="uid://bpjvdok202l6w" path="res://assets/sprites/Soldier/Soldier with shadows/Soldier-Idle.png" id="1_sfgkn"]
@@ -471,11 +471,27 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_rq2x7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfqys"]
 _data = {
 "RESET": SubResource("Animation_sv1xj"),
 "attack1": SubResource("Animation_gkhk2"),
-"hit": SubResource("Animation_h7heu")
+"hit": SubResource("Animation_h7heu"),
+"idle": SubResource("Animation_rq2x7")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2skd4"]
@@ -518,7 +534,7 @@ libraries = {
 }
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(-10, -48.5)
+position = Vector2(0, -49)
 shape = SubResource("RectangleShape2D_2skd4")
 
 [node name="CoupEpee" type="AudioStreamPlayer2D" parent="."]
